@@ -1,0 +1,32 @@
+﻿@page "/"
+<PageTitle>Home</PageTitle>
+
+<h1>Home</h1>
+
+<br />
+<p>
+    @foreach (var datum in Data)
+    {
+        <span>@datum</span>
+        <span> </span>
+    }
+</p>
+<br/>
+<p>@Message</p>
+
+@code
+{
+    string[] Data = new string[] { "This", "content", "was",
+    "rendered", "in", "C#", "on", "the", "server",
+    "requiring", "no", "SignalR", "circuit,", "but",
+    "only", "if", "it", "is", "run", "from", "the",
+    "command", "line"};
+
+    string Message = string.Empty;
+
+    private void Button_Click()
+    {
+        Message = $"Button clicked at {DateTime.Now}";
+    }
+
+}

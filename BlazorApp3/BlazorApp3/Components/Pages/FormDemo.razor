@@ -1,0 +1,59 @@
+﻿@page "/formdemo"
+@using System.ComponentModel.DataAnnotations
+
+<h1>Newsletter</h1>
+
+<p>Sign up for our newsletter! All we need is your name and email address.</p>
+
+<EditForm FormName="newsletter"
+        Enhance
+        Model="NewCustomer"
+        OnValidSubmit="CustomerSignedUp" class="col-md-4">
+
+    <DataAnnotationsValidator />
+
+    <div class="mb-2">
+        <label for="firstName" class="form-label">First Name:</label>
+        <InputText id="firstName" class="form-control" 
+            @bind-Value="NewCustomer.FirstName" />
+    </div>
+    <div class="mb-2">
+        <label for="firstName" class="form-label">Email:</label>
+        <InputText id="firstName" class="form-control" 
+            @bind-Value="NewCustomer.Email" />
+    </div>
+    <br/>
+    <div class="mb-2">
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </div>
+    <ValidationSummary/>
+</EditForm>
+
+<br/>
+<p>@Message</p>
+
+@code
+{
+    private string Message { get; set; } = string.Empty;
+
+    [SupplyParameterFromForm]
+    public Customer NewCustomer { get; set; } = new();
+
+    private void CustomerSignedUp()
+    {
+        // Look ma, no SignalR!
+        // This code runs on the server.
+        // You can safely save this data directly to a database, if you like.
+        Message = $"Thank you, {NewCustomer.FirstName}!";
+    }
+
+    public record Customer
+    {
+        [Required]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
+    }
+}
