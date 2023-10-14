@@ -2,6 +2,8 @@
 
 Please read the documentation at https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-2/#blazor
 
+This code was written with Visual Studio 2022 Preview (Version 17.8.0 Preview 3.0) and .NET 8 RC2
+
 These are the topics I cover in [BlazorTrain](https://blazortrain.com/) episode 99:
 
 ### Global interactivity for Blazor Web Apps
